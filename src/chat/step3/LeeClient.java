@@ -75,7 +75,7 @@ public class LeeClient extends JFrame implements ActionListener{
 
 	public static void main(String[] args) {
 		JFrame.setDefaultLookAndFeelDecorated(true);
-		LoginForm lf = new LoginForm();
+//		LoginForm lf = new LoginForm();
 		LeeClient lc = new LeeClient();
 		lc.initDisplay();
 		lc.init();
