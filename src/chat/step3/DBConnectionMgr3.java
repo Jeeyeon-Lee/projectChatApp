@@ -6,8 +6,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class DBConnectionMgr {
-	static DBConnectionMgr dbMGR = null;
+public class DBConnectionMgr3 {
+	static DBConnectionMgr3 dbMGR = null;
 	Connection con              = null;  // java.sql.Connection -> 특정 데이터베이스와의 연결
 	PreparedStatement pstmt = null;  //java.sql.PreparedStatement -> 미리 컴파일된 SQL 문
 	ResultSet rs                    = null;  //java.sql.ResultSet
@@ -16,14 +16,14 @@ public class DBConnectionMgr {
 	public static final String _USER = "scott";
 	public static final String _PW = "tiger";
 	static LeeServerThread lst = null;
-	public DBConnectionMgr(LeeServerThread leeServerThread) {
-		DBConnectionMgr.lst = leeServerThread;
+	public DBConnectionMgr3(LeeServerThread leeServerThread) {
+		DBConnectionMgr3.lst = leeServerThread;
 	}
-	public DBConnectionMgr() {
+	public DBConnectionMgr3() {
 	}
 	/*정의메소드*/
-	public static DBConnectionMgr getInstance() {
-		if(dbMGR ==null) dbMGR = new DBConnectionMgr(lst);//전변에 대한 null 체크 후 객체를 생성함
+	public static DBConnectionMgr3 getInstance() {
+		if(dbMGR ==null) dbMGR = new DBConnectionMgr3(lst);//전변에 대한 null 체크 후 객체를 생성함
 		return dbMGR;
 	}
 	public Connection getConnection()//리턴타입이 인터페이스 -> 확장성 좋음, 결합도 낮춰짐
@@ -77,67 +77,4 @@ public class DBConnectionMgr {
 			e.printStackTrace();
 		}
 	}
-//	회원가입
-	public boolean registerUser(String userID, String password, String nickname) {
-	    Connection conn = null;
-	    PreparedStatement pstmt = null;
-	    boolean isSuccess = false;
-
-	    try {
-	        conn = getConnection();
-
-	        String query = "INSERT INTO users (userID, password, nickname) VALUES (?, ?, ?)";
-	        pstmt = conn.prepareStatement(query);
-	        pstmt.setString(1, userID);
-	        pstmt.setString(2, password);
-	        pstmt.setString(3, nickname);
-
-	        int result = pstmt.executeUpdate();
-
-	        if (result > 0) {
-	            // 회원가입 성공
-	            isSuccess = true;
-	        }
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    } finally {
-	        freeConnection(pstmt, conn);
-	    }
-
-	    return isSuccess;
-	}
-	
-	
-//	로그인
-	public boolean checkLogin(String userID, String password) {
-	    Connection conn = null;
-	    PreparedStatement pstmt = null;
-	    ResultSet rs = null;
-	    boolean loginSuccess = false;
-
-	    try {
-	        conn = getConnection();
-
-	        String query = "SELECT * FROM users WHERE userID = ? AND password = ?";
-	        pstmt = conn.prepareStatement(query);
-	        pstmt.setString(1, userID);
-	        pstmt.setString(2, password);
-
-	        rs = pstmt.executeQuery();
-
-	        if (rs.next()) {
-	            // 로그인 성공
-	            loginSuccess = true;
-	        }
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    } finally {
-	        freeConnection(rs, pstmt, conn);
-	    }
-
-	    return loginSuccess;
-	}
 }
-
-
-
