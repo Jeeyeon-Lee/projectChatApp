@@ -1,4 +1,4 @@
-package chat.step3;
+package chat.step4;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -6,8 +6,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class DBConnectionMgr3 {
-	static DBConnectionMgr3 dbMGR = null;
+public class DBConnectionMgr2 {
+	static DBConnectionMgr2 dbMGR = null;
 	Connection con              = null;  // java.sql.Connection -> 특정 데이터베이스와의 연결
 	PreparedStatement pstmt = null;  //java.sql.PreparedStatement -> 미리 컴파일된 SQL 문
 	ResultSet rs                    = null;  //java.sql.ResultSet
@@ -15,16 +15,15 @@ public class DBConnectionMgr3 {
 	public static final String _URL= "jdbc:oracle:thin:@127.0.0.1:1521:orcl11";
 	public static final String _USER = "scott";
 	public static final String _PW = "tiger";
-	static LeeServerThread lst = null;
-	public DBConnectionMgr3(LeeServerThread leeServerThread) {
-		DBConnectionMgr3.lst = leeServerThread;
+	static TalkServerThread lst = null;
+	public DBConnectionMgr2(TalkServerThread ts) {
+		DBConnectionMgr2.lst = ts;
 	}
-	public DBConnectionMgr3() {
+	public DBConnectionMgr2() {
 	}
 	/*정의메소드*/
-	 
-	public static DBConnectionMgr3 getInstance() {
-		if(dbMGR ==null) dbMGR = new DBConnectionMgr3(lst);//전변에 대한 null 체크 후 객체를 생성함
+	public static DBConnectionMgr2 getInstance() {
+		if(dbMGR ==null) dbMGR = new DBConnectionMgr2(lst);//전변에 대한 null 체크 후 객체를 생성함
 		return dbMGR;
 	}
 	public Connection getConnection()//리턴타입이 인터페이스 -> 확장성 좋음, 결합도 낮춰짐
