@@ -28,7 +28,7 @@ public class LeeServer extends Thread{
 	    globalList = new Vector<>();
 	    boolean isStop = false;
 	    try {
-	        server = new ServerSocket(3005);
+	        server = new ServerSocket(1004);
 	        jta_log.append(getTime() + " | Server Ready.........");
 	        jta_log.append(getTime() + " | client  연결 요청 대기 중...");
 	        while (!isStop) {
@@ -70,3 +70,5 @@ public class LeeServer extends Thread{
 		cs.start();
 	}
 }
+
+

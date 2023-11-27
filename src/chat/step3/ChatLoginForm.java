@@ -22,7 +22,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class ChatLoginForm extends JFrame implements ActionListener {
-    String nickname = ""; // nickname 변수 선언
+	String nickName="";
 	String imgPath="src/chat/step3/image/";
 	JLabel jlb_id = new JLabel("아이디");
 	JLabel jlb_pw = new JLabel("패스워드");
@@ -134,9 +134,8 @@ public class ChatLoginForm extends JFrame implements ActionListener {
 	    }
 	    return connection;
 	}	
-
 	// 회원가입 메소드
-    public void join(String username, String password) {
+	public void join(String username, String password) {
 	    String sql = "INSERT INTO \"user\" (\"아이디\", \"패스워드\") VALUES (?, ?)";
 	    try {
 	        conn = getConnection();
@@ -149,9 +148,10 @@ public class ChatLoginForm extends JFrame implements ActionListener {
 	        jpf_pw.setText("");
 
 	        // 닉네임 조회
-	        LeeClient lc = new LeeClient(nickname); // 닉네임 전달
-	        String nickname = lc.getNicknameFromDatabase(); // 중복 변수 선언 제거
+	        LeeClient lc = new LeeClient();
+	        String nickname = lc.getNicknameFromDatabase();
 	        if (nickname != null) {
+	            lc.nickname = nickname; // 닉네임 설정
 	            lc.init();
 	            this.setVisible(false);
 	        }
@@ -171,9 +171,10 @@ public class ChatLoginForm extends JFrame implements ActionListener {
 	        pstmt.setString(1, username);
 	        pstmt.setString(2, password);
 	        ResultSet rs = pstmt.executeQuery();
-	        LeeClient lc = new LeeClient(nickname); // 닉네임 전달
-	        String nickname = lc.getNicknameFromDatabase(); // 중복 변수 선언 제거
-	        if (nickname != null) {
+	        if (rs.next()) {
+	            String nickname = rs.getString("닉네임");
+	            LeeClient lc = new LeeClient();
+	            lc.nickname = nickname; // 닉네임 설정
 	            lc.init();
 	            this.setVisible(false);
 	            return true;

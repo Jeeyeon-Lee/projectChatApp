@@ -20,7 +20,7 @@ public class LeeServerThread extends Thread{
 	    System.out.println("LeeServerThread 연결");
 	    this.leeServer = leeServer;
 	    this.client = client;
-	    leeServer.jta_log.append("접속" + client.getInetAddress() + "");
+	    leeServer.jta_log.append("접속" + client.getInetAddress() + "\n");
 	    try {
 	        oos = new ObjectOutputStream(client.getOutputStream());
 	        ois = new ObjectInputStream(client.getInputStream());
@@ -31,8 +31,8 @@ public class LeeServerThread extends Thread{
 	        if (protocol == 100) {
 	            String nickname = st.nextToken();
 	            chatName = nickname;
-	            leeServer.jta_log.append("접속: " + chatName + " 님이 입장하였습니다.");
-	            broadCasting("100," + chatName);
+	            leeServer.jta_log.append("접속: " + chatName + " 님이 입장하였습니다."+"\n");
+	            broadCasting("100," + chatName+"\n");
 	        } else {
 	            // 로그인 프로토콜이 아닌 경우 연결을 종료합니다.
 	            oos.writeObject("500,잘못된 연결입니다. 종료합니다.");
@@ -56,6 +56,7 @@ public class LeeServerThread extends Thread{
 	    System.out.println("DBConnectionMGR 연결");
 	    dbMGR = new DBConnectionMgr(this);
 	}
+
 /*정의메소드*/
 	//모두에게 메시지 전송 메소드
 	public void broadCasting(String message) {
