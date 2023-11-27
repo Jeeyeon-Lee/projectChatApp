@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class DBConnectionMgr {
 	static DBConnectionMgr dbMGR = null;
@@ -12,12 +13,12 @@ public class DBConnectionMgr {
 	PreparedStatement pstmt = null;  //java.sql.PreparedStatement -> 미리 컴파일된 SQL 문
 	ResultSet rs                    = null;  //java.sql.ResultSet
 	public static final String _DRIVER = "oracle.jdbc.driver.OracleDriver";
-	public static final String _URL= "jdbc:oracle:thin:@127.0.0.1:1521:orcl11";
+	public static final String _URL= "jdbc:oracle:thin:@127.0.0.1:1523:orcl11";
 	public static final String _USER = "scott";
 	public static final String _PW = "tiger";
 	static LeeServerThread lst = null;
-	public DBConnectionMgr(LeeServerThread leeServerThread) {
-		DBConnectionMgr.lst = leeServerThread;
+	public DBConnectionMgr(LeeServerThread lst) {
+	    DBConnectionMgr.lst = lst;
 	}
 	public DBConnectionMgr() {
 	}
@@ -42,33 +43,27 @@ public class DBConnectionMgr {
 		}
 		return con;
 	}
-	public static void freeConnection(ResultSet rs, PreparedStatement pstmt, Connection con){
-		try {
-			if(rs !=null) rs.close();
-			if(pstmt !=null) pstmt.close();
-			if(con !=null) con.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	
+	public static void freeConnection(Connection con) {
+	    try {
+	        if (con != null)
+	            con.close();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
 	}
-	/*위 코드에서 22번과 24번 호출 시 문제가 없다면 catch문은 사용x */
-	public static void freeConnection(PreparedStatement pstmt, Connection con){
-		try {
-			if(pstmt !=null) pstmt.close();
-			if(con !=null) con.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+
+	public static void freeConnection(PreparedStatement pstmt, Connection con) {
+	    try {
+	        if (pstmt != null)
+	            pstmt.close();
+	        if (con != null)
+	            con.close();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
 	}
-	public static void freeConnection(ResultSet rs, CallableStatement cstmt, Connection con){
-		try {
-			if(rs !=null) rs.close();
-			if(cstmt !=null) cstmt.close();
-			if(con !=null) con.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+
 	public static void freeConnection(CallableStatement cstmt, Connection con){
 		try {
 			if(cstmt !=null) cstmt.close();
@@ -76,66 +71,6 @@ public class DBConnectionMgr {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-//	회원가입
-	public boolean registerUser(String userID, String password, String nickname) {
-	    Connection conn = null;
-	    PreparedStatement pstmt = null;
-	    boolean isSuccess = false;
-
-	    try {
-	        conn = getConnection();
-
-	        String query = "INSERT INTO users (userID, password, nickname) VALUES (?, ?, ?)";
-	        pstmt = conn.prepareStatement(query);
-	        pstmt.setString(1, userID);
-	        pstmt.setString(2, password);
-	        pstmt.setString(3, nickname);
-
-	        int result = pstmt.executeUpdate();
-
-	        if (result > 0) {
-	            // 회원가입 성공
-	            isSuccess = true;
-	        }
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    } finally {
-	        freeConnection(pstmt, conn);
-	    }
-
-	    return isSuccess;
-	}
-	
-	
-//	로그인
-	public boolean checkLogin(String userID, String password) {
-	    Connection conn = null;
-	    PreparedStatement pstmt = null;
-	    ResultSet rs = null;
-	    boolean loginSuccess = false;
-
-	    try {
-	        conn = getConnection();
-
-	        String query = "SELECT * FROM users WHERE userID = ? AND password = ?";
-	        pstmt = conn.prepareStatement(query);
-	        pstmt.setString(1, userID);
-	        pstmt.setString(2, password);
-
-	        rs = pstmt.executeQuery();
-
-	        if (rs.next()) {
-	            // 로그인 성공
-	            loginSuccess = true;
-	        }
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	    } finally {
-	        freeConnection(rs, pstmt, conn);
-	    }
-
-	    return loginSuccess;
 	}
 }
 

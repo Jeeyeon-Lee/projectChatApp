@@ -25,21 +25,26 @@ public class LeeServer extends Thread{
 	//포트연결, 대기, 소켓연결 시 서버스레드 생성 및 시작
 	@Override
 	public void run() {
-		globalList = new Vector<>();
-		boolean isStop = false;
-		try {
-			server = new ServerSocket(1004);
-			jta_log.append(getTime()+" | Server Ready.........\n");
-            jta_log.append(getTime() + " | client  연결 요청 대기 중...\n");
-			while(!isStop) {
-				socket = server.accept();
-				jta_log.append(getTime()+" | client info:"+socket.getInetAddress()+"\n");	
-				LeeServerThread lst = new LeeServerThread(this);
-				lst.start();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	    globalList = new Vector<>();
+	    boolean isStop = false;
+	    try {
+	        server = new ServerSocket(3005);
+	        jta_log.append(getTime() + " | Server Ready.........");
+	        jta_log.append(getTime() + " | client  연결 요청 대기 중...");
+	        while (!isStop) {
+	            socket = server.accept();
+	            jta_log.append(getTime() + " | client info:" + socket.getInetAddress() + "");
+
+	            // 클라이언트와의 통신을 담당하는 LeeServerThread 객체 생성 및 시작
+	            LeeServerThread lst = new LeeServerThread(this, socket);
+	            lst.start();
+
+	            // 생성된 LeeServerThread 객체를 globalList에 추가
+	            globalList.add(lst);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
 	}
 	//시간표시 메소드
     private String getTime() {
