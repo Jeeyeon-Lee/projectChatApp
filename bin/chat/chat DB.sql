@@ -7,6 +7,3 @@ CREATE TABLE "user"(
 INSERT INTO "user" VALUES ('지연','123','지연');
 INSERT INTO "user" VALUES ('유리','123','유리');
 
-
-SELECT *
-FROM user;
