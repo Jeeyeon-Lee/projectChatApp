@@ -44,24 +44,6 @@ public class LeeServerThread extends Thread{
 			lst.send(message);
 		}
 	}
-	//응답 메소드
-    public void sendResponse(String response) {
-        try {
-            oos.writeObject(response);
-            oos.flush();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-	
- // 클라이언트에게 프로토콜 처리를 보내는 메소드
-    public void sendResponseToClient(String response) {
-        try {
-            send(response);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
     
 	//클라이언트에게 말하기 메소드
 	public void send(String message) {
@@ -101,12 +83,10 @@ public class LeeServerThread extends Thread{
 	                            String password = st.nextToken();
 	                            String nickname = leeServer.login(id, password);
 	                            if (nickname != null) {
-	                                sendResponse("301,success," + nickname);
-	                                sendResponseToClient("300,success," + nickname);
+	                                send(300 +"," +"success" +","+ nickname);
 	                                System.out.println("301 로그인성공");
 	                            } else {
-	                                sendResponse("302,fail");
-	                                sendResponseToClient("302,fail");
+	                                send(302 +","+"fail");
 	                            }
 	                        }
 	                    }

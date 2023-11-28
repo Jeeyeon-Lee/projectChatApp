@@ -165,7 +165,6 @@ public class LeeClient extends JFrame implements ActionListener{
 	        String password = new String(jpf_pw.getPassword());
 	        try {
 	            oos.writeObject("300," + id + "," + password);
-	            oos.flush(); // 버퍼 비우기
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	        }

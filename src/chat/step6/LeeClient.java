@@ -13,7 +13,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
@@ -73,7 +72,7 @@ public class LeeClient extends JFrame implements ActionListener{
 		this.setLayout(null);
 		this.setTitle("자바채팅 ver.1");
 		this.setSize(350, 600);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		this.setLocation(800, 250);
 		this.setVisible(true);
 		this.addWindowListener(new WindowAdapter() {
@@ -98,10 +97,7 @@ public class LeeClient extends JFrame implements ActionListener{
 	}	
 	
 	//채팅창(로그인 완료 후 구현되어야 함) 
-	public void chatplay() {
-//		nickname = JOptionPane.showInputDialog("닉네임을 입력하세요.");
-		//this.setLayout(new GridLayout(1,2));
-		
+	public void chatplay(String nickname) {
 		chatPanel.setLayout(new BorderLayout());
 		chatSouthPanel.setLayout(new BorderLayout());
 		chatSouthPanel.add("Center",jtf_msg);
@@ -126,32 +122,29 @@ public class LeeClient extends JFrame implements ActionListener{
 	    chatFrame.setVisible(true);
 	    chatFrame.setTitle(nickname);
 	    chatFrame.add(chatPanel, BorderLayout.CENTER);		
-	    chatFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    chatFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	    chatFrame.setVisible(true);
 
 	}
 	public void init() {
-		try {
-//			socket = new Socket("172.16.2.11",1004);
-			socket = new Socket("192.168.35.246",1004);
-			oos = new ObjectOutputStream(socket.getOutputStream());
-			ois = new ObjectInputStream(socket.getInputStream());
-			oos.writeObject(100 + "," + nickname);
-			LeeClientThread lct = new LeeClientThread(this);
-			lct.start();			
-		} catch (Exception e) {
-			System.out.println(e.toString());
-		}		
+	    try {
+	        socket = new Socket("192.168.35.246", 1004);
+	        oos = new ObjectOutputStream(socket.getOutputStream());
+	        ois = new ObjectInputStream(socket.getInputStream());
+	        oos.writeObject("100,,"); // 수정된 부분: 빈 문자열을 포함한 `,`로 구분된 문자열 전송
+	        LeeClientThread lct = new LeeClientThread(this);
+	        lct.start();			
+	    } catch (Exception e) {
+	        System.out.println(e.toString());
+	    }		
 	}
 
 	public static void main(String[] args) {
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		LeeClient lc = new LeeClient();
 		lc.initDisplay();
-		lc.chatplay();
 		lc.init();
 	}
-
 	
 	@Override
 	public void actionPerformed(ActionEvent ae) {
@@ -160,9 +153,10 @@ public class LeeClient extends JFrame implements ActionListener{
 		//메시지 보내기 버튼
 		if((obj == jtf_msg) ||(obj == jbtn_send)) {
 			try {
-				oos.writeObject(200 + "," + nickname + "," + msg);
+				oos.writeObject("200," + nickname + "," + msg);
 				jtf_msg.setText("");				
 			} catch (Exception e) {
+				System.out.println(e.toString());
 	            e.printStackTrace();
 			}
 		//로그인 버튼

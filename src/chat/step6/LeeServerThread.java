@@ -44,16 +44,6 @@ public class LeeServerThread extends Thread{
 			lst.send(message);
 		}
 	}
-	//응답 메소드
-    public void sendResponse(String response) {
-        try {
-            oos.writeObject(response);
-            oos.flush();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-	
 	//클라이언트에게 말하기 메소드
 	public void send(String message) {
 		try {
@@ -65,42 +55,53 @@ public class LeeServerThread extends Thread{
 	//클라이언트 ois 듣기 / oos 말하기
 	@Override 
 	public void run() {
-		String msg = null;
-		boolean isStop = false;
-		try {
-			while(!isStop) {
-				msg = (String)ois.readObject();
-				leeServer.jta_log.append(msg+"\n");
-	            StringTokenizer st = new StringTokenizer(msg, ",");
-	            int protocol = Integer.parseInt(st.nextToken());
-
-	            switch (protocol) {
-	                case 200: {
-	                    leeServer.jta_log.append("ChatServerThread : 200번 청취완료");
-	                    String nickname = st.nextToken();
-	                    String message = st.nextToken();
-	                    broadCasting(200 + "|" + nickname + "|" + message);
-	                }
-	                break;
-	                case 300: {
-	                    String id = st.nextToken();
-	                    String password = st.nextToken();
-	                    boolean loginResult = leeServer.login(id, password);
-	                    if (loginResult) {
-	                        sendResponse("301,success");
-	                    } else {
-	                        sendResponse("302,fail");
-	                    }
-	                }
-	                break;
-	                case 400: {
-	                    String id = st.nextToken();
-	                    String password = st.nextToken();
-	                    leeServer.join(id, password);
-	                }
-	                break;
-	            }
-	        }
+	    boolean isStop = false;
+	    String msg = "";
+	    start:
+	    try {
+	        while (!isStop) {
+	            msg = (String) ois.readObject();
+	            leeServer.jta_log.append(msg +"\n");
+	            leeServer.jta_log.setCaretPosition(leeServer.jta_log.getDocument().getLength());
+//	            broadCasting(msg);
+				StringTokenizer st = null;
+				String password = null;
+				String id = null;
+				int protocol = 0;
+				if(msg !=null) {
+					st = new StringTokenizer(msg, ",");
+					protocol = Integer.parseInt(st.nextToken());
+				}
+                switch (protocol) {
+                    case 200: {
+                        leeServer.jta_log.append("LeeServerThread : 200번 청취완료\n");
+						String nickname = leeServer.login(id, password);
+                        String message = st.nextToken();
+                        broadCasting(200 + "," + nickname + "," + message);
+                    }
+                    break;
+                    case 300: {
+                        leeServer.jta_log.append("LeeServerThread : 300번 청취완료\n");
+                        id = st.nextToken();
+                        password = st.nextToken();
+                        String nickname = leeServer.login(id, password);
+                        if (nickname != null) {
+                            send(300 +"," +"success" +","+ nickname);
+                        	broadCasting(301 + "," + nickname);
+                            System.out.println("301 로그인성공");
+                        } else {
+                        	broadCasting(302 + "," + "fail");
+                        }
+                    }
+                    break;
+                    case 400: {
+                        leeServer.jta_log.append("ChatServerThread : 400번(회원가입) 청취완료\n");
+                        id = st.nextToken();
+                        password = st.nextToken();
+                        leeServer.join(id, password);
+                    }break start;
+                }
+            }
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    }
