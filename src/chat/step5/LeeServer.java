@@ -109,7 +109,7 @@ public class LeeServer extends Thread{
 		return uList;
 	}
 	// 로그인 메소드
-	public boolean login(String id, String password) {
+	public String login(String id, String password) {
 	    StringBuilder sql = new StringBuilder();
 	    try {
 	        sql.append("SELECT * FROM USERS WHERE ID = ? AND PASSWORD = ?");
@@ -121,7 +121,7 @@ public class LeeServer extends Thread{
 	        if (rs.next()) {
 	            if (rs.getString("ID").equals(id) && rs.getString("PASSWORD").equals(password)) {
 	            System.out.println("로그인 성공!!");
-	            return true;
+                return rs.getString("NICKNAME"); // 닉네임 반환
 	        	}
 	        }
 	    } catch (SQLException se) {
@@ -137,7 +137,7 @@ public class LeeServer extends Thread{
 	            e.printStackTrace();
 	        }
 	    }
-	    return false;
+	    return null;
 	}
 	
 	// 회원가입 메소드

@@ -54,6 +54,15 @@ public class LeeServerThread extends Thread{
         }
     }
 	
+ // 클라이언트에게 프로토콜 처리를 보내는 메소드
+    public void sendResponseToClient(String response) {
+        try {
+            send(response);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
 	//클라이언트에게 말하기 메소드
 	public void send(String message) {
 		try {
@@ -65,40 +74,53 @@ public class LeeServerThread extends Thread{
 	//클라이언트 ois 듣기 / oos 말하기
 	@Override 
 	public void run() {
-		String msg = null;
-		boolean isStop = false;
-		try {
-			while(!isStop) {
-				msg = (String)ois.readObject();
-				leeServer.jta_log.append(msg+"\n");
+	    String msg = null;
+	    boolean isStop = false;
+	    try {
+	        while (!isStop) {
+	            msg = (String) ois.readObject();
+	            leeServer.jta_log.append(msg +"");
+	            broadCasting(msg);
 	            StringTokenizer st = new StringTokenizer(msg, ",");
-	            int protocol = Integer.parseInt(st.nextToken());
-
-	            switch (protocol) {
-	                case 200: {
-	                    leeServer.jta_log.append("ChatServerThread : 200번 청취완료");
-	                    String nickname = st.nextToken();
-	                    String message = st.nextToken();
-	                    broadCasting(200 + "|" + nickname + "|" + message);
-	                }
-	                break;
-	                case 300: {
-	                    String id = st.nextToken();
-	                    String password = st.nextToken();
-	                    boolean loginResult = leeServer.login(id, password);
-	                    if (loginResult) {
-	                        sendResponse("301,success");
-	                    } else {
-	                        sendResponse("302,fail");
+	            while (st.hasMoreTokens()) { // 토큰이 있는지 확인
+	                int protocol = Integer.parseInt(st.nextToken());
+	                switch (protocol) {
+	                    case 200: {
+	                        leeServer.jta_log.append("ChatServerThread : 200번(메시지) 청취완료");
+	                        if (st.hasMoreTokens()) {
+	                            String nickname = st.nextToken();
+	                            String message = st.nextToken();
+	                            broadCasting("200," + nickname + "," + message);
+	                        }
 	                    }
+	                    break;
+	                    case 300: {
+	                        leeServer.jta_log.append("ChatServerThread : 300번(로그인) 청취완료");
+	                        if (st.hasMoreTokens()) {
+	                            String id = st.nextToken();
+	                            String password = st.nextToken();
+	                            String nickname = leeServer.login(id, password);
+	                            if (nickname != null) {
+	                                sendResponse("301,success," + nickname);
+	                                sendResponseToClient("300,success," + nickname);
+	                                System.out.println("301 로그인성공");
+	                            } else {
+	                                sendResponse("302,fail");
+	                                sendResponseToClient("302,fail");
+	                            }
+	                        }
+	                    }
+	                    break;
+	                    case 400: {
+	                        leeServer.jta_log.append("ChatServerThread : 400번(회원가입) 청취완료");
+	                        if (st.hasMoreTokens()) {
+	                            String id = st.nextToken();
+	                            String password = st.nextToken();
+	                            leeServer.join(id, password);
+	                        }
+	                    }
+	                    break;
 	                }
-	                break;
-	                case 400: {
-	                    String id = st.nextToken();
-	                    String password = st.nextToken();
-	                    leeServer.join(id, password);
-	                }
-	                break;
 	            }
 	        }
 	    } catch (Exception e) {
