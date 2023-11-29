@@ -128,7 +128,7 @@ public class LeeClient extends JFrame implements ActionListener{
 	}
 	public void init() {
 	    try {
-	        socket = new Socket("192.168.35.246", 1004);
+	        socket = new Socket("127.0.0.1", 1004);
 	        oos = new ObjectOutputStream(socket.getOutputStream());
 	        ois = new ObjectInputStream(socket.getInputStream());
 	        oos.writeObject("100,,"); // 수정된 부분: 빈 문자열을 포함한 `,`로 구분된 문자열 전송

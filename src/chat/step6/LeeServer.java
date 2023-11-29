@@ -20,8 +20,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-import chat.step3.DBConnectionMgr;
-import chat.step3.LeeClient;
+// 로그인, 회원가입 시 닉네임을 소켓으로 보내고, 
+// 그걸 클라이언트단에서 참조하여 받는 식의 메소드를 만듦
 
 public class LeeServer extends Thread{
 	/*선언부*/
@@ -172,6 +172,6 @@ public class LeeServer extends Thread{
 		cs.initDisplay();
 		cs.getUserList();
 		cs.start();
-		cs.login("지연", "123");
+//		cs.login("지연", "123");
 	}
 }

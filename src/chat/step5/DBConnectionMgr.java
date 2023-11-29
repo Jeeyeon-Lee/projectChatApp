@@ -15,7 +15,7 @@ public class DBConnectionMgr {
 	PreparedStatement pstmt = null;  //java.sql.PreparedStatement -> 미리 컴파일된 SQL 문
 	ResultSet rs                    = null;  //java.sql.ResultSet
 	public static final String _DRIVER = "oracle.jdbc.driver.OracleDriver";
-	public static final String _URL= "jdbc:oracle:thin:@127.0.0.1:1523:orcl11";
+	public static final String _URL= "jdbc:oracle:thin:@127.0.0.1:1521:orcl11";
 	public static final String _USER = "scott";
 	public static final String _PW = "tiger";
 	/*정의메소드*/

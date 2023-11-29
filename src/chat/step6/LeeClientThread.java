@@ -53,7 +53,7 @@ public class LeeClientThread extends Thread{
 				} // switch				
 			} catch (Exception e) {
 		        e.printStackTrace();
-			} // try..catch
-		} //while
-	} // run
+			} 
+		} 
+	} 
 }
