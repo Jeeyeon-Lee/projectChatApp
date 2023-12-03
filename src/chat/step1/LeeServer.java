@@ -77,8 +77,8 @@ public class LeeServer {
         }
     }
 
-    public void log(String message) {
-        SwingUtilities.invokeLater(() -> jta_log.append(message + "\n"));
+    public void log(final String message) {
+//        SwingUtilities.invokeLater(() -> jta_log.append(message + "\n"));
     }
 
     public static void main(String[] args) {

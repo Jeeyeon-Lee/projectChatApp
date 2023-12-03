@@ -1,7 +1,9 @@
 
-package chat.step6;
+package chat.step7;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.sql.Connection;
@@ -23,7 +25,7 @@ import javax.swing.JTextArea;
 // 로그인, 회원가입 시 닉네임을 소켓으로 보내고, 
 // 그걸 클라이언트단에서 참조하여 받는 식의 메소드를 만듦
 
-public class LeeServer extends Thread{
+public class LeeServer extends Thread {
 	/*선언부*/
 //	명단 리스트
 	List<LeeServerThread> globalList = null;

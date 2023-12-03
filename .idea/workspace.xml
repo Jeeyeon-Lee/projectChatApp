@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="da11dcea-0571-40c5-abfd-0033df4429bf" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/.classpath" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.project" beforeDir="false" afterPath="$PROJECT_DIR$/.project" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chat/step1/LeeServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/chat/step1/LeeServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chat/step1/LeeServerThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/chat/step1/LeeServerThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chat/step2/LeeClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/chat/step2/LeeClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chat/step2/LeeClientThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/chat/step2/LeeClientThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chat/step2/LeeServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/chat/step2/LeeServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chat/step2/LeeServerThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/chat/step2/LeeServerThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chat/step3/ChatLoginForm$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/chat/step3/ChatLoginForm$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chat/step3/ChatLoginForm$mypanal.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/chat/step3/ChatLoginForm$mypanal.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chat/step3/ChatLoginForm.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/chat/step3/ChatLoginForm.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chat/step3/ChatLoginService.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/chat/step3/ChatLoginService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chat/step3/DBConnectionMgr.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/chat/step3/DBConnectionMgr.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chat/step3/LeeClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/chat/step3/LeeClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chat/step3/LeeClientThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/chat/step3/LeeClientThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chat/step3/LeeServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/chat/step3/LeeServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chat/step3/LeeServerThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/chat/step3/LeeServerThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chat/step4/LeeClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/chat/step4/LeeClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chat/step4/LeeClientThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/chat/step4/LeeClientThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chat/step4/LeeServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/chat/step4/LeeServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chat/step4/LeeServerThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/chat/step4/LeeServerThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chat/step5/DBConnectionMgr.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/chat/step5/DBConnectionMgr.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chat/step5/LeeClient$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/chat/step5/LeeClient$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chat/step5/LeeClient$mypanal.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/chat/step5/LeeClient$mypanal.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chat/step5/LeeClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/chat/step5/LeeClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chat/step5/LeeClientThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/chat/step5/LeeClientThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chat/step5/LeeServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/chat/step5/LeeServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chat/step5/LeeServerThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/chat/step5/LeeServerThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chat/step6/DBConnectionMgr.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/chat/step6/DBConnectionMgr.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chat/step6/LeeClient$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/chat/step6/LeeClient$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chat/step6/LeeClient$mypanal.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/chat/step6/LeeClient$mypanal.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chat/step6/LeeClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/chat/step6/LeeClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chat/step6/LeeClientThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/chat/step6/LeeClientThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chat/step6/LeeServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/chat/step6/LeeServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/chat/step6/LeeServerThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/bin/chat/step6/LeeServerThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chat/step1/LeeServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat/step1/LeeServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/chat/step6/LeeServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/chat/step6/LeeServer.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 5
+}]]></component>
+  <component name="ProjectId" id="2Z2HJlwYyLaesxQEo9dgGhK7YkW" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "jeeyeon",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/jeeye/dev/workspace/projectChatApp"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="LeeServer" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="17" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <envs>
+        <env name="JAVA_HOME" value="C:\Program Files\Java\Zulu\zulu-17" />
+      </envs>
+      <option name="MAIN_CLASS_NAME" value="chat.step7.LeeServer" />
+      <option name="PROGRAM_PARAMETERS" value="$Classpath$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="chat.step7.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="da11dcea-0571-40c5-abfd-0033df4429bf" name="변경" comment="" />
+      <created>1701613184974</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1701613184974</updated>
+    </task>
+    <servers />
+  </component>
+</project>
